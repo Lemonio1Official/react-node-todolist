@@ -1,0 +1,118 @@
+.tasklist {
+  position: relative;
+  width: 400px;
+  padding: 8px;
+  margin: 0 auto;
+  list-style: none;
+  border: 1px dashed #888;
+  height: 306px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: var(--gray);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--lightblue);
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    background: #0000;
+    transition: 1s;
+    & + li {
+      margin-top: 4px;
+    }
+    &.task {
+      display: flex;
+    }
+    aside {
+      white-space: nowrap;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        height: 2px;
+        background: var(--gray);
+      }
+      &::-webkit-scrollbar-thumb {
+        background: var(--lightblue);
+      }
+    }
+    input {
+      width: 100%;
+      background: none;
+      font-size: 16px;
+      padding-bottom: 4px;
+    }
+    div {
+      display: flex;
+      span,
+      s,
+      em {
+        margin-left: 4px;
+        cursor: pointer;
+        transition: all 0.2s, transform 0.5s;
+        transform: scale(0.8);
+        &:hover {
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #0002;
+          }
+        }
+      }
+      span {
+        position: relative;
+        background: var(--lightblue);
+        height: 23px;
+        width: 23px;
+        &::before {
+          @include icon("\270E", 0px);
+          transform: translate(-50%, -50%) rotateZ(90deg);
+        }
+      }
+      s {
+        position: relative;
+        background: var(--lightblue);
+        height: 23px;
+        width: 23px;
+        &::before {
+          @include icon("\2714", 2px);
+        }
+      }
+      em {
+        font-style: normal;
+        position: relative;
+        background: var(--red);
+        height: 23px;
+        width: 23px;
+        &::before {
+          @include icon("\2716", 2px);
+        }
+      }
+    }
+    &[active] {
+      background: #0002;
+      div span,
+      s,
+      em {
+        transform: scale(1);
+      }
+    }
+    &[c-done="true"] {
+      background: #fff1;
+      aside {
+        text-decoration: line-through;
+      }
+      span,
+      s {
+        background: var(--gray);
+      }
+    }
+    &[c-edit="true"] {
+      box-shadow: 0 0 1px 1px var(--lightblue);
+      transition: 0.2s;
+    }
+  }
+}

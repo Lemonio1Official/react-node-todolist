@@ -1,0 +1,54 @@
+.addtodo {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  input {
+    width: 200px;
+    padding: 2px 4px;
+    font-size: 16px;
+    background: none;
+    box-shadow: 0 0 1px 1px #ececec;
+    &::placeholder {
+      color: #fff9;
+    }
+    &:hover::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    &:focus {
+      box-shadow: 0 0 1px 2px var(--lightblue);
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+  button {
+    position: relative;
+    margin-left: 10px;
+    width: 50px;
+    height: 24px;
+    background: var(--gray);
+    font-size: 20px;
+    cursor: pointer;
+    &::before {
+      @include icon("\2756", 2px);
+    }
+    &:hover {
+      animation: infinite 0.8s waves linear;
+      @keyframes waves {
+        from {
+          box-shadow: 0 0 0 0 #000;
+        }
+        to {
+          box-shadow: 0 0 8px 4px #0000;
+        }
+      }
+    }
+    &:active {
+      animation: none;
+      box-shadow: 0 0 4px 4px #0005;
+    }
+  }
+}
